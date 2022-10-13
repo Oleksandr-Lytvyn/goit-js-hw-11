@@ -11,7 +11,7 @@ refs.form.addEventListener('submit', onSubmit);
 
 function onSubmit(event) {
   event.preventDefault();
-  fetchImages()
+  fetchImages(event)
     .then(data => {
       if (data.length === 0) {
         Notify.info(
