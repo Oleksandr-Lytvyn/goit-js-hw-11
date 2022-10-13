@@ -11,7 +11,7 @@ export function createMarkup(data) {
 
 function createCard(dataCard) {
   return `<div class="photo-card">
-    <img src="${dataCard.webformatURL}" alt="${dataCard.tags}" loading="lazy" />
+    <img src="${dataCard.webformatURL}" alt="${dataCard.tags}" width="150px" loading="lazy" />
     <div class="info">
       <p class="info-item">
         <b>${dataCard.likes} Likes</b>

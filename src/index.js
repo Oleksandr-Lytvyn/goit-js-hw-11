@@ -12,9 +12,6 @@ refs.form.addEventListener('submit', onSubmit);
 function onSubmit(event) {
   event.preventDefault();
   fetchImages()
-    .then(response => {
-      return response.data.hits;
-    })
     .then(data => {
       if (data.length === 0) {
         Notify.info(
@@ -22,5 +19,6 @@ function onSubmit(event) {
         );
       }
       createMarkup(data);
-    });
+    })
+    .catch(error => console.log(error));
 }
