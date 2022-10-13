@@ -1,12 +1,11 @@
 import { refs } from './refs';
 
 export function createMarkup(data) {
+  //   clearCardList();
   let dataMarkup = '';
   data.map(element => {
-    // console.log(element.userImageURL);
     dataMarkup += createCard(element);
   });
-  console.log(dataMarkup);
   refs.cardsList.innerHTML = dataMarkup;
 }
 
@@ -29,3 +28,7 @@ function createCard(dataCard) {
     </div>
   </div>`;
 }
+
+// function clearCardList() {
+//   refs.cardsList.innerHTML = '';
+// }

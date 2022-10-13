@@ -15,5 +15,12 @@ function onSubmit(event) {
     .then(response => {
       return response.data.hits;
     })
-    .then(createMarkup);
+    .then(data => {
+      if (data.length === 0) {
+        Notify.info(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+      }
+      createMarkup(data);
+    });
 }
