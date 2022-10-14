@@ -1,9 +1,9 @@
 import { refs } from './refs';
 
-export function createMarkup(data) {
+export function createMarkup(hits) {
   //   clearCardList();
   let dataMarkup = '';
-  data.map(element => {
+  hits.map(element => {
     dataMarkup += createCard(element);
   });
   refs.cardsList.innerHTML = dataMarkup;

@@ -4,3 +4,10 @@
   width: 200px;
   margin: 0 auto;
 }
+
+.gallery {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
