@@ -13,8 +13,7 @@ refs.form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
   event.preventDefault();
-  unsplashApi.resetPage();
-  refs.cardsList.innerHTML = '';
+  clearPage();
 
   const { searchQuery } = event.target;
   const query = searchQuery.value.trim().toLowerCase();
@@ -28,11 +27,14 @@ function handleSubmit(event) {
           closeButton: true,
         });
       }
-      if (total === 0) {
-        console.log('total=0');
+      if (!total) {
         Notify.info(
-          'Sorry, there are no images matching your search query. Please try again.'
+          'Sorry, there are no images matching your search query. Please try again.',
+          {
+            closeButton: true,
+          }
         );
+        return;
       }
 
       const markup = createMarkup(hits);
@@ -44,8 +46,7 @@ function handleSubmit(event) {
     })
     .catch(error => {
       Notify.failure(error);
-      unsplashApi.resetPage();
-      refs.cardsList.innerHTML = '';
+      clearPage();
     });
   // console.log('after create markup');
 }
@@ -68,8 +69,7 @@ function onLoadMore() {
     })
     .catch(error => {
       Notify.failure(error);
-      unsplashApi.resetPage();
-      refs.cardsList.innerHTML = '';
+      clearPage();
     });
 }
 
@@ -80,6 +80,12 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
   showCounter: false,
 });
+
+function clearPage() {
+  unsplashApi.resetPage();
+  refs.cardsList.innerHTML = '';
+  refs.loadBtn.classList.add('is-hidden');
+}
 
 // refs.form.addEventListener('submit', onSubmit);
 
