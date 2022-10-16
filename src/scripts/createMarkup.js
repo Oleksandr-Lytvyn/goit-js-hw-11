@@ -4,7 +4,9 @@ export function createMarkup(hits) {
       return `
   <a  href="${element.largeImageURL}">
   <div class="photo-card">
-    <img src="${element.webformatURL}" alt="${element.tags}" width="150px" loading="lazy" />
+  <div class="thumb">
+    <img class="pic" src="${element.webformatURL}" alt="${element.tags}" width="300px" loading="lazy" />
+    </div>
     <div class="info">
       <p class="info-item">
         <b>${element.likes} Likes</b>
