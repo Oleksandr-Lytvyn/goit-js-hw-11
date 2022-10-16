@@ -3,7 +3,6 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { refs } from './scripts/refs';
-import { fetchImages } from './scripts/fetchImages';
 import { createMarkup } from './scripts/createMarkup';
 import { PixabayAPI } from './scripts/pixabayApi';
 
@@ -41,6 +40,11 @@ async function handleSubmit(event) {
     refs.cardsList.insertAdjacentHTML('beforeend', markup);
     pixabayApi.calculateTotalPages(total);
     lightbox.refresh();
+
+    window.scrollBy({
+      top: 100,
+      behavior: 'smooth',
+    });
     if (pixabayApi.isNotLastPage) {
       refs.loadBtn.classList.remove('is-hidden');
     }
@@ -60,6 +64,13 @@ async function onLoadMore() {
     const markup = createMarkup(hits);
     refs.cardsList.insertAdjacentHTML('beforeend', markup);
     lightbox.refresh();
+    const { height: cardHeight } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
+    window.scrollBy({
+      top: cardHeight * 3.5,
+      behavior: 'smooth',
+    });
     if (!pixabayApi.isNotLastPage) {
       Notify.info(
         "We're sorry, but you've reached the end of search results.",
