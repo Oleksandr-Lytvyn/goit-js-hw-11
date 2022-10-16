@@ -1,20 +1,18 @@
-export class UnsplashAPI {
+import axios from 'axios';
+
+export class PixabayAPI {
   #page = 1;
   #query = '';
   #totalPages = 0;
 
   async getPhotos() {
-    const url = `https://pixabay.com/api/?key=30541781-d1cfd5170773e7eb644cb816c&q=${
+    const urlAXIOS = `https://pixabay.com/api/?key=30541781-d1cfd5170773e7eb644cb816c&q=${
       this.#query
     }&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${
       this.#page
     }`;
-
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return await response.json();
+    const { data } = await axios.get(urlAXIOS);
+    return data;
   }
   incrementPage() {
     this.#page += 1;
