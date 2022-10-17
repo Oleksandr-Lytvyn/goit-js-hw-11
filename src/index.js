@@ -41,8 +41,10 @@ async function handleSubmit(event) {
     pixabayApi.calculateTotalPages(total);
     lightbox.refresh();
 
+    const { height } = refs.form.getBoundingClientRect();
+    console.log(height);
     window.scrollBy({
-      top: 100,
+      top: height,
       behavior: 'smooth',
     });
     if (pixabayApi.isNotLastPage) {
@@ -64,11 +66,10 @@ async function onLoadMore() {
     const markup = createMarkup(hits);
     refs.cardsList.insertAdjacentHTML('beforeend', markup);
     lightbox.refresh();
-    const { height: cardHeight } = document
-      .querySelector('.gallery')
-      .firstElementChild.getBoundingClientRect();
+    const y = window.innerHeight;
+    console.log(y);
     window.scrollBy({
-      top: cardHeight * 3.5,
+      top: (y / 100) * 95,
       behavior: 'smooth',
     });
     if (!pixabayApi.isNotLastPage) {
